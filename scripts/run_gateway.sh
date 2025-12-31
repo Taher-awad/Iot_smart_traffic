@@ -12,4 +12,4 @@ if [ ! -d "venv" ]; then
 fi
 
 echo "Starting Traffic Gateway..."
-./venv/bin/python traffic_gateway.py
+./venv/bin/python ../backend/traffic_gateway.py

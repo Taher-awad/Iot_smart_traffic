@@ -2,12 +2,18 @@ import time
 import json
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 
+import os
+
 # Config (Same as traffic_gateway.py)
 ENDPOINT = "a23rgceujjdkf1-ats.iot.us-east-1.amazonaws.com"
 CLIENT_ID = "Command_Tester"
-PATH_TO_CERT = "certificate.pem.crt"
-PATH_TO_KEY = "private.pem.key"
-PATH_TO_ROOT = "AmazonRootCA1.pem"
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_DIR = os.path.join(BASE_DIR, "../config")
+
+PATH_TO_CERT = os.path.join(CONFIG_DIR, "certificate.pem.crt")
+PATH_TO_KEY = os.path.join(CONFIG_DIR, "private.pem.key")
+PATH_TO_ROOT = os.path.join(CONFIG_DIR, "AmazonRootCA1.pem")
 
 mqtt_client = AWSIoTMQTTClient(CLIENT_ID)
 mqtt_client.configureEndpoint(ENDPOINT, 8883)

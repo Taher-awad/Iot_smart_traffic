@@ -6,13 +6,19 @@ import threading
 import paho.mqtt.client as mqtt
 from AWSIoTPythonSDK.MQTTLib import AWSIoTMQTTClient
 
+import os
+
 # --- CONFIGURATION ---
 # 1. AWS Config
 AWS_ENDPOINT = "a23rgceujjdkf1-ats.iot.us-east-1.amazonaws.com"
 CLIENT_ID = "TrafficGateway_Bridge"
-PATH_TO_CERT = "certificate.pem.crt"
-PATH_TO_KEY = "private.pem.key"
-PATH_TO_ROOT = "root-CA.crt"
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CONFIG_DIR = os.path.join(BASE_DIR, "../config")
+
+PATH_TO_CERT = os.path.join(CONFIG_DIR, "certificate.pem.crt")
+PATH_TO_KEY = os.path.join(CONFIG_DIR, "private.pem.key")
+PATH_TO_ROOT = os.path.join(CONFIG_DIR, "root-CA.crt")
 
 # 2. Local Broker Config
 LOCAL_BROKER = "localhost" 
